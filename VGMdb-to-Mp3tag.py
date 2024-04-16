@@ -178,36 +178,48 @@ def join_lists(list1,list2):
 # WRITE TO FILE
 list_arranger=expand_artists(arr_in)
 list_composer=expand_artists(comp_in)
-list_lyricist=expand_artists(lyr_in)
 
 len_arr = len(list_arranger)
 len_comp = len(list_composer)
-len_lyr = len(list_lyricist)
 
 if len_arr <= len_comp:
     list_arranger.extend([[]] * (len_comp - len_arr))
 else:
     list_composer.extend([] * (len_arr - len_comp))
 
-if len_lyr < len_comp:
-    list_lyricist.extend([[]] * (len_comp - len_lyr))
-
 list_artist = join_lists(list_composer,list_arranger)
 
 arranger = legacy_artist_separators(remove_dups(list_arranger))
 composer = legacy_artist_separators(remove_dups(list_composer))
 artist = legacy_artist_separators(remove_dups(list_artist))
-lyricist = legacy_artist_separators(remove_dups(list_lyricist))
 
 filename = directory + "\\" + albumname+".txt"
-
-f = open(filename, "w")
 s = "  -  "
-for i in range(len(artist)):
-    f.write(artist[i] + s + composer[i] + s + arranger[i] + s + lyricist[i] + "\n")
-f.close()
 
-print("File name:\n"+filename)
-print("\nFormat String: \n%artist%  -  %composer%  -  %arranger%  -  %lyricist%")
+if lyr_in != "":
+    list_lyricist=expand_artists(lyr_in)
 
+    len_lyr = len(list_lyricist)
 
+    if len_lyr < len_comp:
+        list_lyricist.extend([[]] * (len_comp - len_lyr))
+
+    lyricist = legacy_artist_separators(remove_dups(list_lyricist))
+
+    f = open(filename, "w")
+
+    for i in range(len(artist)):
+        f.write(artist[i] + s + composer[i] + s + arranger[i] + s + lyricist[i] + "\n")
+    f.close()
+
+    print("File name:\n"+filename)
+    print("\nFormat String: \n%artist%  -  %composer%  -  %arranger%  -  %lyricist%")
+else:
+    f = open(filename, "w")
+
+    for i in range(len(artist)):
+        f.write(artist[i] + s + composer[i] + s + arranger[i] + "\n")
+    f.close()
+
+    print("File name:\n" + filename)
+    print("\nFormat String: \n%artist%  -  %composer%  -  %arranger%")
