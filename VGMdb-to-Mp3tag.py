@@ -45,7 +45,10 @@ def split_by_separator(text):
 
 # split 01~03 into [1,2,3] etc.
 def rangesplit(numbers):
-    splitted = numbers.split("~")
+    if "~" in numbers:
+        splitted = numbers.split("~")
+    else:
+        splitted = numbers.split("-")
     if len(splitted) == 2:
         a,b = int(splitted[0]),int(splitted[1])
         range = np.linspace(a,b,b-a+1,dtype=int).tolist()
