@@ -28,7 +28,7 @@ that is, using `artist = composer & arranger` (multiple artists supported with c
 ## Usage
 Requires installation of Python and Numpy.
 
-- In the .py file, insert the respective credits as in the example above (without the header line "Composition:" etc.)
+- In the .py file, insert the respective credits as in the example above (without the header line "Composition:" etc.). As of now, only lyricist (but not composer and arranger) may be empty
 - Albumname can remain unchanged; this only determines the filename
 - Legacy credited artist will be out in brackets as above
 - directory must be specified
