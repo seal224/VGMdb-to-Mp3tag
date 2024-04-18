@@ -1,4 +1,5 @@
 import numpy as np
+import os
 
 # INPUT
 albumname = "tags"
@@ -193,7 +194,7 @@ arranger = legacy_artist_separators(remove_dups(list_arranger))
 composer = legacy_artist_separators(remove_dups(list_composer))
 artist = legacy_artist_separators(remove_dups(list_artist))
 
-filename = directory + "\\" + albumname+".txt"
+filename = os.path.join(directory,albumname+".txt")
 s = "  -  "
 
 if lyr_in != "":
